@@ -1,0 +1,154 @@
+//QUESTÃO 1 CALCULADORA
+
+function calculadora(num1, num2, operacao) {
+   
+    if (operacao === 'soma') {
+        return num1 + num2;
+    } else if (operacao === 'subtracao') {
+        return num1 - num2;
+    } else if (operacao === 'multiplicacao') {
+        return num1 * num2;
+    } else if (operacao === 'divisao') {
+        if (num2 === 0) {
+            return 'Erro: divisão por zero!';
+        } else {
+            return num1 / num2;
+        }
+    } else {
+        return 'Operação inválida!';
+    }
+}
+
+console.log(calculadora(10, 5, 'soma'));         // 15
+console.log(calculadora(10, 5, 'subtracao'));    // 5
+console.log(calculadora(10, 5, 'multiplicacao'));// 50
+console.log(calculadora(10, 5, 'divisao'));      // 2
+console.log(calculadora(10, 0, 'divisao'));      // Erro: divisão por zero!
+console.log(calculadora(10, 5, 'modulo'));       // Operação inválida!
+
+//QUESTÃO 2 PALÍNDROMO
+
+function ehPalindromo(palavra) {
+    // Remove espaços e converte para minúsculas para evitar discrepâncias
+    let palavraLimpa = palavra.toLowerCase().replace(/\s+/g, '');
+    let tamanho = palavraLimpa.length;
+
+    for (let i = 0; i < tamanho / 2; i++) {
+        if (palavraLimpa[i] !== palavraLimpa[tamanho - 1 - i]) {
+            return `A palavra "${palavra}" não é um palíndromo.`;
+        }
+    }
+
+    return `A palavra "${palavra}" é um palíndromo!`;
+}
+
+let palavra = prompt("Digite uma palavra para verificar se é um palíndromo:");
+
+alert(ehPalindromo(palavra));
+
+//QUESTÃO 3 TAREFAS
+
+let tarefas = [];
+
+for (let i = 0; i < 5; i++) {
+    let tarefa = prompt(`Digite a tarefa ${i + 1}:`);
+    tarefas.push(tarefa);  // Adiciona a tarefa ao array
+}
+
+alert("Tarefas adicionadas:\n" + tarefas.join('\n'));
+
+let tarefaConcluida = prompt("Digite o número da tarefa que você deseja marcar como concluída (1 a 5):");
+
+let indice = parseInt(tarefaConcluida) - 1;  // Converte a escolha para índice (ajustado para base 0)
+if (indice >= 0 && indice < tarefas.length) {
+    tarefas.splice(indice, 1);  // Remove a tarefa do array
+    alert("Tarefa concluída! Lista atualizada:\n" + tarefas.join('\n'));
+} else {
+    alert("Tarefa inválida! Nenhuma tarefa foi removida.");
+}
+
+//QUESTÃO 4 NOTAS
+let aluno = {
+    nome: "BRUNO",  // Nome do aluno
+    notas: [8, 7.5, 9],  // Array de notas do aluno
+        media: function() {
+        let soma = 0;
+                for (let i = 0; i < this.notas.length; i++) {
+            soma += this.notas[i];
+        }
+
+        return soma / this.notas.length;
+    }
+};
+
+alert(`Aluno: ${aluno.nome}\nMédia: ${aluno.media().toFixed(2)}`);
+
+//QUESTÃO 5 MULTIPLICAÇÃO
+
+function tabelaMultiplicacao(numero) {
+    if (numero <= 0) {
+        console.log("Por favor, insira um número positivo.");
+        return;
+    }
+
+    console.log(`Tabela de multiplicação de ${numero}:`);
+ 
+    for (let i = 1; i <= 10; i++) {
+        console.log(`${numero} x ${i} = ${numero * i}`);
+    }
+}
+
+tabelaMultiplicacao(5);
+
+tabelaMultiplicacao(-3);
+
+//QUESTÃO 6 IDADE
+
+let pessoas = [];
+
+function coletarDados() {
+    for (let i = 0; i < 5; i++) {
+        let nome = prompt(`Digite o nome da pessoa ${i + 1}:`);
+        let idade = parseInt(prompt(`Digite a idade da pessoa ${i + 1}:`));
+
+        pessoas.push({ nome: nome, idade: idade });
+    }
+}
+
+function exibirNomesMaiorIdade() {
+    console.log("Pessoas com mais de 18 anos:");
+    for (let i = 0; i < pessoas.length; i++) {
+        if (pessoas[i].idade > 18) {
+            console.log(pessoas[i].nome);
+        }
+    }
+}
+
+// Coleta os dados do usuário
+coletarDados();
+
+// Exibe os nomes das pessoas com mais de 18 anos
+exibirNomesMaiorIdade();
+
+
+//QUESTÃO 7 ESTOQUE
+
+let produtos = [
+    { nome: "Produto A", preco: 10.00, quantidade: 5 },
+    { nome: "Produto B", preco: 15.50, quantidade: 3 },
+    { nome: "Produto C", preco: 7.25, quantidade: 8 }
+];
+
+function calcularValorTotal(estoque) {
+    let valorTotal = 0; // Inicializa o valor total
+
+    for (let i = 0; i < estoque.length; i++) {
+        // Calcula o valor do estoque de cada produto e acumula no valor total
+        valorTotal += estoque[i].preco * estoque[i].quantidade;
+    }
+
+    return valorTotal; // Retorna o valor total
+}
+
+let totalEstoque = calcularValorTotal(produtos);
+console.log(`O valor total do estoque é: R$ ${totalEstoque.toFixed(2)}`);
