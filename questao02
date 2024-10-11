@@ -1,0 +1,17 @@
+function ehPalindromo(palavra) {
+    
+    let palavraLimpa = palavra.toLowerCase().replace(/\s+/g, '');
+    let tamanho = palavraLimpa.length;
+
+    for (let i = 0; i < tamanho / 2; i++) {
+        if (palavraLimpa[i] !== palavraLimpa[tamanho - 1 - i]) {
+            return `A palavra "${palavra}" não é um palíndromo.`;
+        }
+    }
+
+    return `A palavra "${palavra}" é um palíndromo!`;
+}
+
+let palavra = prompt("Digite uma palavra para verificar se é um palíndromo:");
+
+alert(ehPalindromo(palavra));
